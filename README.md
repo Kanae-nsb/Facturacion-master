@@ -1,1 +1,2 @@
-# Facturacion-master
+# facturacion
+Proyecto para la clase poo.
