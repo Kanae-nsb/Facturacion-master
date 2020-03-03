@@ -25,13 +25,17 @@ public class ProductoServicio {
     }
     
     
-    public void guardar(Producto producto){
+    public void guardar(Producto producto, boolean exist){
         
         asignarId(producto);
        
         try {
           if(!producto.getNombre().trim().isEmpty()&&producto.getPrecio()!=0&&producto.getExistencia()!=0){
-     listaDeProducto.add(producto);
+              if(exist){
+                  listaDeProducto.add(producto.getId()-1, producto);
+              }else{
+                  listaDeProducto.add(producto);
+              }
      }else{
          Alert novalido= new Alert(Alert.AlertType.ERROR);
          novalido.setContentText(null);
@@ -72,17 +76,17 @@ public class ProductoServicio {
     private void crearDatosDePrueba() {
         Producto producto1 = new Producto();
         producto1.setId(0);
-        producto1.setNombre("queso");
-        producto1.setPrecio(12.5);
+        producto1.setNombre("RTX 2080");
+        producto1.setPrecio(1000);
         producto1.setExistencia(4);
         
         Producto producto2 = new Producto();
         producto2.setId(0);
-        producto2.setNombre("mantequilla");
-        producto2.setPrecio(14.4);
+        producto2.setNombre("Ryzen 7 3800X");
+        producto2.setPrecio(400);
         producto2.setExistencia(45);
-        guardar(producto1);
-        guardar(producto2);
+        guardar(producto1,false);
+        guardar(producto2,false);
     }
 
     

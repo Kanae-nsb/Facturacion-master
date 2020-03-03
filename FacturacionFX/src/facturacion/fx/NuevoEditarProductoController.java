@@ -84,10 +84,12 @@ alert.setContentText(nuevonombreporoducto.getText());
 
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
-    controller.guardar(producto);
+   
     if(exist){
+        
         controller.eliminarProducto(producto);
     }
+     controller.guardar(producto,exist);
     cerrar();
 } else {
     

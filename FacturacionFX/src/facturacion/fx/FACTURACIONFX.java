@@ -30,7 +30,7 @@ public class FACTURACIONFX extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Facturacion");
+        stage.setTitle ("Facturacion");
         stage.show();
     }
 

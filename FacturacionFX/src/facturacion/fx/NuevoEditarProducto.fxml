@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" fx:id="btncancelarnuevoproducto" prefHeight="347.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="facturacion.fx.NuevoEditarProductoController">
    <children>
       <Label layoutX="64.0" layoutY="76.0" text="Id" />
-      <TextField fx:id="nuevoidprodcuto" layoutX="128.0" layoutY="72.0" />
+      <TextField fx:id="nuevoidprodcuto" editable="false" layoutX="128.0" layoutY="72.0" promptText="0" text="0" />
       <Label layoutX="64.0" layoutY="169.0" text="Precio" />
       <TextField fx:id="nuevoprecioproducto" layoutX="128.0" layoutY="165.0" />
       <Label layoutX="64.0" layoutY="121.0" text="Nombre" />

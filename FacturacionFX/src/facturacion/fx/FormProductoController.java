@@ -102,7 +102,7 @@ public class FormProductoController implements Initializable {
             }else{
             ObservableList<Producto> databuscada = FXCollections.observableArrayList();
             for (Producto data1 : data) {
-                if(data1.getNombre().contains(temp)){
+                if(data1.getNombre().toLowerCase().contains(temp.toLowerCase())){
                     databuscada.add(data1);
                 }
             }
@@ -129,14 +129,14 @@ public class FormProductoController implements Initializable {
         stage.show();
         
     }
-    public void guardar(Producto producto){
-        servicio.guardar(producto);
+    public void guardar(Producto producto, boolean exist){
+        servicio.guardar(producto, exist);
         cargardatos();
     }
     
     public void eliminarProducto(Producto eliminar){
            for(int i=0; i<data.size();i++){
-          if(data.get(i).equals(eliminar)){
+          if(data.get(i).getId().equals(eliminar.getId())){
              data.remove(i);
              servicio.eliminarPServicio(i);
               break;      
@@ -166,7 +166,12 @@ public class FormProductoController implements Initializable {
                 btn.setOnAction(event->{
                     Producto producto= (Producto) getTableRow().getItem();
                     try {
-                        abrirventanamodal(producto, "Editar Producto",true);
+                        Producto ptemp= new Producto();
+                        ptemp.setId(producto.getId());
+                        ptemp.setExistencia(producto.getExistencia());
+                        ptemp.setNombre(producto.getNombre());
+                        ptemp.setPrecio(producto.getPrecio());
+                        abrirventanamodal(ptemp, "Editar Producto",true);
                         
                     } catch (IOException ex) {
                         Logger.getLogger(FormProductoController.class.getName()).log(Level.SEVERE, null, ex);
