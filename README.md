@@ -1,2 +1,3 @@
 # facturacion
-Proyecto para la clase poo.
+Proyecto para la clase programacion orientada a objetos
+
