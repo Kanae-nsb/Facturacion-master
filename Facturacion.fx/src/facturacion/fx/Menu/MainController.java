@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import facturacion.fx.VistaProductoReporte;
+import facturacion.fx.VistaFacturaReporte;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,12 +17,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import net.sf.jasperreports.engine.JRException;
 
 public class MainController implements Initializable, AbrirFormularioCallback {
 
@@ -42,6 +47,7 @@ public class MainController implements Initializable, AbrirFormularioCallback {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         if (!FacturacionFx.isSplashLoaded) {
             loadSplashScreen();
         }
@@ -113,9 +119,27 @@ public class MainController implements Initializable, AbrirFormularioCallback {
                 case "Productos":
                     nombreFXML = "FormProducto.fxml";
                     break;
+                    
                 case "Facturas":
                     nombreFXML= "FormFactura.fxml";
                     break;
+                    
+                case "Reporte de Productos":
+                {
+                    nombreFXML = "FormReporteProductos.fxml";
+                    break;
+                }
+                 
+                case "Reporte de Facturas":
+                {
+                    nombreFXML = "FormReporteFacturas.fxml";
+                    break;
+                }
+                
+                case "Cerrar Sesion":
+                    cerrarSesion();
+                    break;
+              
             }
             form = FXMLLoader.load(getClass().getResource(("/facturacion/fx/" + nombreFXML)));
             drawerStack.setContent(form);
@@ -158,4 +182,15 @@ public class MainController implements Initializable, AbrirFormularioCallback {
             form.setPrefHeight(stage.getHeight());
         }
     }
+
+    private void cerrarSesion() throws IOException {
+        Stage stage = FacturacionFx.getStage();
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("/facturacion/fx/FormLogin.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.setTitle("Ingresar al Sistema");
+        stage.show();    }
 }

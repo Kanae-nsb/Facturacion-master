@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Set;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -140,6 +141,18 @@ public class Producto {
     public Image getVerImagen(){
         Image img = new Image(new ByteArrayInputStream(imagen));
         return img;
+    }
+    
+    //Retorna la descripción de la categoría para obtenerla en el resporte de productos.
+    @Transient
+    public String getdescripcionCategoria(){
+        return getCategoria().getDescripcion();
+    }
+    
+    //Retorna la imagen del producto para obtenerla en reporte de productos.
+    @Transient
+    public InputStream getFoto(){
+        return new ByteArrayInputStream(imagen);
     }
     
     public void setVerImagen(Image image){
